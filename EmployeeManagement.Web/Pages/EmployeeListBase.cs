@@ -28,7 +28,7 @@ namespace EmployeeManagement.Web.Pages
                 Department = new Department
                 {
                     DepartmentId = 1,
-                    DepartmentName = "HR"
+                    DepartmentName = "IT"
                 },
                 PhotoPath = "images/john.jpg"
             };
@@ -43,7 +43,7 @@ namespace EmployeeManagement.Web.Pages
                 Department = new Department
                 {
                     DepartmentId = 2,
-                    DepartmentName = "IT"
+                    DepartmentName = "HR"
                 },
                 PhotoPath = "images/sam.jpg"
             };
@@ -57,7 +57,7 @@ namespace EmployeeManagement.Web.Pages
                 Gender = Gender.Female,
                 Department = new Department
                 {
-                    DepartmentId = 2,
+                    DepartmentId = 1,
                     DepartmentName = "IT"
                 },
                 PhotoPath = "images/mary.jpg"
@@ -72,8 +72,8 @@ namespace EmployeeManagement.Web.Pages
                 Gender = Gender.Female,
                 Department = new Department
                 {
-                    DepartmentId = 1,
-                    DepartmentName = "HR"
+                    DepartmentId = 3,
+                    DepartmentName = "Payroll"
                 },
                 PhotoPath = "images/sara.jpg"
             };
