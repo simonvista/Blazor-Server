@@ -50,11 +50,36 @@ namespace EmployeeManagement.Api.Controllers
 
                 return res;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(
                     StatusCodes.Status500InternalServerError,
                     "Failed to retrieve employee from DB");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<Employee>> CreateEmployee(Employee employee)
+        {
+            try
+            {
+                if (employee==null)
+                {
+                    return BadRequest();
+                }
+
+                var addEmployee = await _employeeRepository.AddEmployee(employee);
+                return CreatedAtAction(
+                    nameof(GetEmployee),
+                    new {id = addEmployee.DepartmentId},
+                    addEmployee);
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    "Failed to create employee in DB");
             }
         }
     }
