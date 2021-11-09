@@ -30,11 +30,7 @@ namespace EmployeeManagement.Web.Pages
                 Email = "David@pragimteach.com",
                 DateOfBirth = new DateTime(1980, 10, 5),
                 Gender = Gender.Male,
-                Department = new Department
-                {
-                    DepartmentId = 1,
-                    DepartmentName = "IT"
-                },
+                DepartmentId = 1,
                 PhotoPath = "images/john.jpg"
             };
             Employee e2 = new Employee
@@ -45,11 +41,7 @@ namespace EmployeeManagement.Web.Pages
                 Email = "sam@pragimteach.com",
                 DateOfBirth = new DateTime(1981, 12, 22),
                 Gender = Gender.Male,
-                Department = new Department
-                {
-                    DepartmentId = 2,
-                    DepartmentName = "HR"
-                },
+                DepartmentId = 2,
                 PhotoPath = "images/sam.jpg"
             };
             Employee e3 = new Employee
@@ -60,11 +52,7 @@ namespace EmployeeManagement.Web.Pages
                 Email = "mary@pragimteach.com",
                 DateOfBirth = new DateTime(1979, 11, 11),
                 Gender = Gender.Female,
-                Department = new Department
-                {
-                    DepartmentId = 1,
-                    DepartmentName = "IT"
-                },
+                DepartmentId = 1,
                 PhotoPath = "images/mary.jpg"
             };
             Employee e4 = new Employee
@@ -75,11 +63,7 @@ namespace EmployeeManagement.Web.Pages
                 Email = "sara@pragimteach.com",
                 DateOfBirth = new DateTime(1982, 9, 23),
                 Gender = Gender.Female,
-                Department = new Department
-                {
-                    DepartmentId = 3,
-                    DepartmentName = "Payroll"
-                },
+                DepartmentId = 3,
                 PhotoPath = "images/sara.jpg"
             };
             Employees = new List<Employee> {e1, e2, e3, e4};
