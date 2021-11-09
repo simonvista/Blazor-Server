@@ -6,7 +6,7 @@ using EmployeeManagement.Models;
 
 namespace EmployeeManagement.Api.Models
 {
-    interface IEmployeeRepository
+    public interface IEmployeeRepository
     {
         Task<IEnumerable<Employee>> GetEmployees();
         Task<Employee> GetEmployee(int employeeId);

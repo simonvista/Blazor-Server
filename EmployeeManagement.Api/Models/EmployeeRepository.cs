@@ -6,7 +6,7 @@ using EmployeeManagement.Api.Models;
 using EmployeeManagement.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace EmployeeManagement.Api.Migrations
+namespace EmployeeManagement.Api.Models
 {
     public class EmployeeRepository : IEmployeeRepository
     {
