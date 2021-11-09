@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EmployeeManagement.Api.Migrations;
 using EmployeeManagement.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -31,6 +32,8 @@ namespace EmployeeManagement.Api
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DBConnection"));
             });
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddControllers();
         }
 
