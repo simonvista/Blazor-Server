@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EmployeeManagement.Api.Controllers
 {
     [Route("api/[controller]")]
+    //[ApiController] will check if model state is valid
     [ApiController]
     public class EmployeesController : ControllerBase
     {
@@ -68,6 +69,12 @@ namespace EmployeeManagement.Api.Controllers
                     return BadRequest();
                 }
 
+                var emp= await _employeeRepository.GetEmployeeByEmail(employee.Email);
+                if (emp!=null)
+                {
+                    ModelState.AddModelError("email","Employee email is already in system");
+                    return BadRequest(ModelState);
+                }
                 var addEmployee = await _employeeRepository.AddEmployee(employee);
                 return CreatedAtAction(
                     nameof(GetEmployee),
