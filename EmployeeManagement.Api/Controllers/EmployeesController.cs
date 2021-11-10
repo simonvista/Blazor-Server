@@ -108,11 +108,30 @@ namespace EmployeeManagement.Api.Controllers
 
                 return await _employeeRepository.UpdateEmployee(employee);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(
                     StatusCodes.Status500InternalServerError,
                     "Failed to update employee in DB");
+            }
+        }
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult<Employee>> DeleteEmployee(int id)
+        {
+            try
+            {
+                var emp=await _employeeRepository.GetEmployee(id);
+                if (emp==null)
+                {
+                    return NotFound($"Employee with id={id} not found in DB");
+                }
+                return await _employeeRepository.DeleteEmployee(id);
+            }
+            catch (Exception )
+            {
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    "Failed to delete employee from DB");
             }
         }
     }
