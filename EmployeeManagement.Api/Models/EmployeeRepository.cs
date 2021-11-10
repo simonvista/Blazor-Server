@@ -24,7 +24,9 @@ namespace EmployeeManagement.Api.Models
 
         public async Task<Employee> GetEmployee(int employeeId)
         {
-            return await _appDbContext.Employees.FirstOrDefaultAsync(
+            return await _appDbContext.Employees
+                .Include(e=>e.Department) //.ThenInclude(e=>e.Skill) //if Employee table has Skill table. .ThenInclude(e=>e.Hobby) //if Employee table has Hobby table...
+                .FirstOrDefaultAsync(
                 e => e.EmployeeId == employeeId);
         }
 
