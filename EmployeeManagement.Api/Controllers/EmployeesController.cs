@@ -89,5 +89,31 @@ namespace EmployeeManagement.Api.Controllers
                     "Failed to create employee in DB");
             }
         }
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult<Employee>> UpdateEmployee(
+            int id,Employee employee)
+        {
+            try
+            {
+                if (id!=employee.EmployeeId)
+                {
+                    return BadRequest("Employee id your provided doesn't math with the one in DB");
+                }
+
+                var emp=await _employeeRepository.GetEmployee(id);
+                if (emp==null)
+                {
+                    return NotFound($"Employee with id={id} not found in DB");
+                }
+
+                return await _employeeRepository.UpdateEmployee(employee);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    "Failed to update employee in DB");
+            }
+        }
     }
 }
