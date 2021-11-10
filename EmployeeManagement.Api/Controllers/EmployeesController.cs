@@ -134,5 +134,29 @@ namespace EmployeeManagement.Api.Controllers
                     "Failed to delete employee from DB");
             }
         }
+        //base_url/api/employees/search/<name>/<gender>
+        //[HttpGet("{search}/{name}/{gender}?}")]
+        //base_url/api/employees/search?name=**&gender=**
+        [HttpGet("{search}")]
+        public async Task<ActionResult<IEnumerable<Employee>>> Search(
+            string name, Gender? gender)
+        {
+            try
+            {
+                var res = await _employeeRepository.Search(name, gender);
+                if (res.Any())
+                {
+                    return Ok(res);
+                }
+
+                return NotFound();
+            }
+            catch (Exception )
+            {
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    "Failed to retrieve employees in DB based on your queries");
+            }
+        }
     }
 }
