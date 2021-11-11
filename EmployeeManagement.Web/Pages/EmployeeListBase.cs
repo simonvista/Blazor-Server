@@ -13,6 +13,8 @@ namespace EmployeeManagement.Web.Pages
         //inject service -> no inject service through constructor
         [Inject] public IEmployeeService EmployeeService { get; set; }
         public IEnumerable<Employee> Employees { get; set; }
+
+        public bool ShowFooter { get; set; } = true;
         //protected override Task OnInitializedAsync()
         //{
         //    LoadEmployees();
