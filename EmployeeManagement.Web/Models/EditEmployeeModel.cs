@@ -29,7 +29,8 @@ namespace EmployeeManagement.Web.Models
         [Required]
         public int? DepartmentId { get; set; }
         public string PhotoPath { get; set; }
-        //navigation properties
-        public Department Department { get; set; }
+        //navigation properties (complex model)
+        [ValidateComplexType]
+        public Department Department { get; set; } = new Department();
     }
 }
