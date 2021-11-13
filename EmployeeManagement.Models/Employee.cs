@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using EmployeeManagement.Models.CustomValidators;
 
 namespace EmployeeManagement.Models
 {
@@ -14,6 +15,7 @@ namespace EmployeeManagement.Models
         [Required]
         public string LastName { get; set; }
         [EmailAddress]
+        [EmailDomainValidator]
         public string Email { get; set; }
         public DateTime DateOfBirth { get; set; }
         public Gender Gender { get; set; }
