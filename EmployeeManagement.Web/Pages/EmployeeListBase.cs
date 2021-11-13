@@ -11,7 +11,8 @@ namespace EmployeeManagement.Web.Pages
     public class EmployeeListBase : ComponentBase
     {
         //inject service -> no inject service through constructor
-        [Inject] public IEmployeeService EmployeeService { get; set; }
+        [Inject] 
+        public IEmployeeService EmployeeService { get; set; }
         protected IEnumerable<Employee> Employees { get; set; }
 
         protected bool ShowFooter { get; set; } = true;
@@ -27,7 +28,7 @@ namespace EmployeeManagement.Web.Pages
             //await Task.Run(LoadEmployees);
             Employees= (await EmployeeService.GetEmployees()).ToList();
         }
-
+        //event handler
         protected void EmployeeSelectionChanged(bool isSelected)
         {
             if (isSelected)
@@ -38,6 +39,11 @@ namespace EmployeeManagement.Web.Pages
             {
                 SelectedEmployeesCount--;
             }
+        }
+        //event handler
+        protected async Task EmployeeDeleted()
+        {
+            Employees = (await EmployeeService.GetEmployees()).ToList();
         }
     }
 }
