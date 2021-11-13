@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EmployeeManagement.Models.CustomValidators
 {
-    class EmailDomainValidator : ValidationAttribute
+    public class EmailDomainValidator : ValidationAttribute
     {
         public string AllowedDomain { get; set; }
         protected override ValidationResult IsValid(
@@ -13,7 +13,7 @@ namespace EmployeeManagement.Models.CustomValidators
         {
             string[] strings = value.ToString().Split('@');
             //if (strings[1].ToLower() == "pragimtech.com")
-            if (strings[1].ToLower() == AllowedDomain.ToLower())
+            if (strings.Length>1 && strings[1].ToLower() == AllowedDomain.ToLower())
             {
                 return null;
             }
