@@ -1,4 +1,6 @@
-﻿<div class="top-row pl-4 navbar navbar-dark">
+﻿@inject NavigationManager navigationManager;
+
+<div class="top-row pl-4 navbar navbar-dark">
     <a class="navbar-brand" href="">EmployeeManagement.Web</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
@@ -11,8 +13,12 @@
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
-            <NavLink class="nav-link" href="/editemployee" Match="NavLinkMatch.All">
+            <NavLink class="nav-link" href="/editemployee" Match="NavLinkMatch.All"
+                     @onclick="HandleClick">
                 <span class="oi oi-file" aria-hidden="true"></span> Create
+            </NavLink>
+            <NavLink class="nav-link" href="/editemployee/1" Match="NavLinkMatch.All">
+                <span class="oi oi-pencil" aria-hidden="true"></span> Edit
             </NavLink>
         </li>
         
@@ -27,5 +33,10 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+    
+    private void HandleClick()
+    {
+        navigationManager.NavigateTo("editemployee",true);
     }
 }
