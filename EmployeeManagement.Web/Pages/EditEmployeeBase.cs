@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using EmployeeManagement.Models;
 using EmployeeManagement.Web.Models;
 using EmployeeManagement.Web.Services;
@@ -26,6 +27,8 @@ namespace EmployeeManagement.Web.Pages
         //Id will be passed through URL
         [Parameter]
         public string Id { get; set; }
+        [Inject]
+        public IMapper Mapper { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
@@ -33,16 +36,19 @@ namespace EmployeeManagement.Web.Pages
             Departments = (await DepartmentService.GetDepartments()).ToList();
             //DepartmentId = Employee.DepartmentId.ToString();
             //DepartmentId = new Guid();
-            EditEmployeeModel.EmployeeId = Employee.EmployeeId;
-            EditEmployeeModel.FirstName = Employee.FirstName;
-            EditEmployeeModel.LastName = Employee.LastName;
-            EditEmployeeModel.Email = Employee.Email;
-            EditEmployeeModel.ConfirmEmail = Employee.Email;
-            EditEmployeeModel.DateOfBirth = Employee.DateOfBirth;
-            EditEmployeeModel.Gender = Employee.Gender;
-            EditEmployeeModel.PhotoPath = Employee.PhotoPath;
-            EditEmployeeModel.DepartmentId = Employee.DepartmentId;
-            EditEmployeeModel.Department = Employee.Department;
+
+            //EditEmployeeModel.EmployeeId = Employee.EmployeeId;
+            //EditEmployeeModel.FirstName = Employee.FirstName;
+            //EditEmployeeModel.LastName = Employee.LastName;
+            //EditEmployeeModel.Email = Employee.Email;
+            //EditEmployeeModel.ConfirmEmail = Employee.Email;
+            //EditEmployeeModel.DateOfBirth = Employee.DateOfBirth;
+            //EditEmployeeModel.Gender = Employee.Gender;
+            //EditEmployeeModel.PhotoPath = Employee.PhotoPath;
+            //EditEmployeeModel.DepartmentId = Employee.DepartmentId;
+            //EditEmployeeModel.Department = Employee.Department;
+
+            Mapper.Map(Employee, EditEmployeeModel);
         }
 
         protected void HandleValidSubmit()

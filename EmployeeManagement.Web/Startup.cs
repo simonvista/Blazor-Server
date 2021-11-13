@@ -9,6 +9,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using EmployeeManagement.Web.Models;
 using EmployeeManagement.Web.Services;
 
 namespace EmployeeManagement.Web
@@ -28,6 +30,7 @@ namespace EmployeeManagement.Web
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+            services.AddAutoMapper(typeof(EmployeeProfile));
             //DIs
             services.AddHttpClient<IEmployeeService, EmployeeService>(
                 client =>
