@@ -32,7 +32,21 @@ namespace EmployeeManagement.Web.Pages
         [Inject] public NavigationManager NavigationManager { get; set; }
         protected override async Task OnInitializedAsync()
         {
-            Employee= await EmployeeService.GetEmployee(int.Parse(Id));
+            int.TryParse(Id, out int employeeId);
+            if (employeeId!=0)
+            {
+                Employee = await EmployeeService.GetEmployee(int.Parse(Id));
+            }
+            else
+            {
+                Employee = new Employee()
+                {
+                    DepartmentId = 1,
+                    DateOfBirth = DateTime.Now,
+                    PhotoPath = "images/nophoto.png"
+                };
+            }
+            //Employee= await EmployeeService.GetEmployee(int.Parse(Id));
             Departments = (await DepartmentService.GetDepartments()).ToList();
             //DepartmentId = Employee.DepartmentId.ToString();
             //DepartmentId = new Guid();
@@ -54,7 +68,16 @@ namespace EmployeeManagement.Web.Pages
         protected async Task HandleValidSubmit()
         {
             Mapper.Map(EditEmployeeModel, Employee);
-            var res= await EmployeeService.UpdateEmployee(Employee);
+            Employee res = null;
+            if (Employee.EmployeeId!=0)
+            {
+                res = await EmployeeService.UpdateEmployee(Employee);
+            }
+            //var res = await EmployeeService.UpdateEmployee(Employee);
+            else
+            {
+                res = await EmployeeService.CreateEmployee(Employee);
+            }
             if (res!=null)
             {
                 NavigationManager.NavigateTo("/");

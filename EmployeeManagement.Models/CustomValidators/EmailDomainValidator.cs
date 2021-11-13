@@ -11,16 +11,21 @@ namespace EmployeeManagement.Models.CustomValidators
         protected override ValidationResult IsValid(
             object value, ValidationContext validationContext)
         {
-            string[] strings = value.ToString().Split('@');
-            //if (strings[1].ToLower() == "pragimtech.com")
-            if (strings.Length>1 && strings[1].ToLower() == AllowedDomain.ToLower())
+            if (value!=null)
             {
-                return null;
+                string[] strings = value.ToString().Split('@');
+                //if (strings[1].ToLower() == "pragimtech.com")
+                if (strings.Length>1 && strings[1].ToLower() == AllowedDomain.ToLower())
+                {
+                    return null;
+                }
+
+                return new ValidationResult(
+                    //"Domain must be pragimtech.com",
+                    ErrorMessage, new[] {validationContext.MemberName});
             }
 
-            return new ValidationResult(
-                //"Domain must be pragimtech.com",
-                ErrorMessage, new[] {validationContext.MemberName});
+            return null;
         }
     }
 }
