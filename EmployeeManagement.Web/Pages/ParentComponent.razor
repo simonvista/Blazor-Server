@@ -1,21 +1,11 @@
 ﻿@page "/pc"
 
-@*<ChildComponent Placeholder="Parent component placeholder text"
-                Required="required" Maxlength="100" Size="50" />*@
-@*<ChildComponent InputAttributes="attributesFromParent" Value="Parent value"
-                someattribute="somevalue"></ChildComponent>*@
-<ChildComponent Value="Parent value" maxlength="50" placeholder="Parent component placeholder text"
-                required="required" size="50" someattribute="somevalue"></ChildComponent>
-
+<h1 style="@Style">Parent component text</h1>
+<CascadingValue Value="@Style">
+    <ChildComponent></ChildComponent>
+</CascadingValue>
 
 @code
 {
-    //attribute splatting
-    //public Dictionary<string, object> attributesFromParent { get; set; } = new Dictionary<string, object>()
-    //{
-    //    {"required", "required"},
-    //    {"placeholder", "Parent component placeholder text"},
-    //    {"maxlength", "50"},
-    //    {"size", "50"}
-    //};
+    public string Style { get; set; } = "color:red";
 }
