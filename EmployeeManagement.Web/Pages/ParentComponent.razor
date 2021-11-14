@@ -5,10 +5,11 @@
 </button>
 
 <h1 style="@Style">Parent component text - Counter: @Counter</h1>
-
-<CascadingValue Value="@Counter" Name="Counter" IsFixed="true">
-    <CascadingValue Value="@Style" Name="ColorStyle">
-        <CascadingValue Value="@BorderStyle" Name="BorderStyle">
+@*IsFixed="false" by default*@
+@*IsFixed="true" value in child component won't change once be assigned from parent*@
+<CascadingValue Value="@Counter" Name="Counter" IsFixed="false">
+    <CascadingValue Value="@Style" Name="ColorStyle" IsFixed="true">
+        <CascadingValue Value="@BorderStyle" Name="BorderStyle" IsFixed="true">
             <ChildComponent></ChildComponent>
         </CascadingValue>
     </CascadingValue>
