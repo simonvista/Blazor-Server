@@ -1,7 +1,7 @@
 ﻿@*<input id="firstName" 
        placeholder="@Placeholder" maxlength="@Maxlength"
        required="@Required" size="@Size"/>*@
-<input id="firstName" @attributes="InputAttributes" value="@Value" />
+<input id="firstName" placeholder="Child component placeholder text" @attributes="InputAttributes" value="@Value" />
 
 @code
 {
@@ -15,14 +15,15 @@
     //public string Size { get; set; } = "25";
 
     //attribute splatting
-    [Parameter]
-    public Dictionary<string, object> InputAttributes { get; set; } = new Dictionary<string, object>()
-    {
-        {"required", "required"},
-        {"placeholder", "Child component placeholder text"},
-        {"maxlength", "15"},
-        {"size", "25"}
-    };
+    //arbitrary attribute
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object> InputAttributes { get; set; } = new Dictionary<string, object>();
+    //{
+    //    {"required", "required"},
+    //    {"placeholder", "Child component placeholder text"},
+    //    {"maxlength", "15"},
+    //    {"size", "25"}
+    //};
     [Parameter]
     public string Value { get; set; } = "Child value";
 }
