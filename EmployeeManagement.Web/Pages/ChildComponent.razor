@@ -1,0 +1,15 @@
+﻿<input id="firstName" 
+       placeholder="@Placeholder" maxlength="@Maxlength"
+       required="@Required" size="@Size"/>
+
+@code
+{
+    [Parameter]
+    public string Placeholder { get; set; } = "Child component placeholder text";
+    [Parameter]
+    public string Required { get; set; } = "required";
+    [Parameter]
+    public string Maxlength { get; set; } = "15";
+    [Parameter]
+    public string Size { get; set; } = "25";
+}
