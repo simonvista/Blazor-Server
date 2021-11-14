@@ -18,11 +18,16 @@ namespace PragimTech.Components
         //custom event
         [Parameter]
         public EventCallback<bool> ConfirmationChanged { get; set; }
+        [Parameter]
+        public string ConfirmationTitle { get; set; } = "Delete confirmation";
+        [Parameter]
+        public string ConfirmationMsg { get; set; } = "Are you sure you want to delete?";
         //event handler
         protected async Task OnConfirmationChanged(bool value)
         {
             ShowConfirmation = false;
             await ConfirmationChanged.InvokeAsync(value);
         }
+
     }
 }
