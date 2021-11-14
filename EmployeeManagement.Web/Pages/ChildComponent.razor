@@ -1,10 +1,11 @@
-﻿<h1 style="@ChildStyle">Child component text - Employee age: @ChildAge</h1>
+﻿<h1 style="@ChildColor; @ChildBorder">Child component text </h1>
 <GrandChildComponent ></GrandChildComponent>
 
 @code
 {
-    [CascadingParameter]
-    public string ChildStyle { get; set; }
-    [CascadingParameter]
-    public int ChildAge { get; set; }
+    [CascadingParameter(Name = "ColorStyle")]
+    public string ChildColor { get; set; }
+    [CascadingParameter(Name = "BorderStyle")]
+    //public int ChildAge { get; set; }
+    public string ChildBorder { get; set; }
 }

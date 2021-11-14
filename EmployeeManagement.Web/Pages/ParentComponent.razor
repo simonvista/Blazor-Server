@@ -1,8 +1,8 @@
 ﻿@page "/pc"
 
 <h1 style="@Style">Parent component text</h1>
-<CascadingValue Value="@Style">
-    <CascadingValue Value="@EmployeeAge">
+<CascadingValue Value="@Style" Name="ColorStyle">
+    <CascadingValue Value="@BorderStyle" Name="BorderStyle">
         <ChildComponent></ChildComponent>
     </CascadingValue>
 </CascadingValue>
@@ -10,5 +10,6 @@
 @code
 {
     public string Style { get; set; } = "color:red";
-    public int EmployeeAge { get; set; } = 25;
+    //public int EmployeeAge { get; set; } = 25;
+    public string BorderStyle { get; set; } = "border:1px solid red";
 }
