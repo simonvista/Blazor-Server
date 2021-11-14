@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using EmployeeManagement.Models;
 using EmployeeManagement.Web.Services;
 using Microsoft.AspNetCore.Components;
+using PragimTech.Components;
 
 namespace EmployeeManagement.Web.Pages
 {
@@ -23,6 +24,7 @@ namespace EmployeeManagement.Web.Pages
         public IEmployeeService EmployeeService { get; set; }
         [Inject] 
         public NavigationManager NavigationManager { get; set; }
+
         protected async Task CheckBoxChanged(ChangeEventArgs e)
         {
             await OnEmployeeSelection.InvokeAsync((bool) e.Value);
@@ -32,11 +34,27 @@ namespace EmployeeManagement.Web.Pages
         //    await EmployeeService.DeleteEmployee(Employee.EmployeeId);
         //    NavigationManager.NavigateTo("/",true);
         //}
-        protected async Task Delete_Click()
+
+        //protected async Task Delete_Click()
+        //{
+        //    await EmployeeService.DeleteEmployee(Employee.EmployeeId);
+        //    await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
+        //    //NavigationManager.NavigateTo("/", true);
+        //}
+        public ConfirmBase DeleteConfirmation { get; set; }
+        protected void Delete_Click()
         {
-            await EmployeeService.DeleteEmployee(Employee.EmployeeId);
-            await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
-            //NavigationManager.NavigateTo("/", true);
+            DeleteConfirmation.Show();
         }
+
+        protected async Task ConfirmDelete_Click(bool deleteConfirm)
+        {
+            if (deleteConfirm)
+            {
+                await EmployeeService.DeleteEmployee(Employee.EmployeeId);
+                await OnEmployeeDeleted.InvokeAsync(Employee.EmployeeId);
+            }
+        }
+ 
     }
 }
