@@ -1,8 +1,10 @@
-﻿<h1 style="@ChildStyle">Child component text</h1>
+﻿<h1 style="@ChildStyle">Child component text - Employee age: @ChildAge</h1>
 <GrandChildComponent ></GrandChildComponent>
 
 @code
 {
     [CascadingParameter]
     public string ChildStyle { get; set; }
+    [CascadingParameter]
+    public int ChildAge { get; set; }
 }

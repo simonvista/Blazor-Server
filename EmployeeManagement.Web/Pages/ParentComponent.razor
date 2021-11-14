@@ -2,10 +2,13 @@
 
 <h1 style="@Style">Parent component text</h1>
 <CascadingValue Value="@Style">
-    <ChildComponent></ChildComponent>
+    <CascadingValue Value="@EmployeeAge">
+        <ChildComponent></ChildComponent>
+    </CascadingValue>
 </CascadingValue>
 
 @code
 {
     public string Style { get; set; } = "color:red";
+    public int EmployeeAge { get; set; } = 25;
 }

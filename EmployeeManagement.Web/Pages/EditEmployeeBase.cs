@@ -95,7 +95,7 @@ namespace EmployeeManagement.Web.Pages
         //}
 
         protected ConfirmBase DeleteConfirmation { get; set; }
-        protected async Task Delete_Click()
+        protected void Delete_Click()
         {
             DeleteConfirmation.Show();
         }
