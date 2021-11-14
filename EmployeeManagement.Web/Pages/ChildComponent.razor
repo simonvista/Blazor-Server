@@ -1,15 +1,28 @@
-﻿<input id="firstName" 
+﻿@*<input id="firstName" 
        placeholder="@Placeholder" maxlength="@Maxlength"
-       required="@Required" size="@Size"/>
+       required="@Required" size="@Size"/>*@
+<input id="firstName" @attributes="InputAttributes" value="@Value" />
 
 @code
 {
+    //[Parameter]
+    //public string Placeholder { get; set; } = "Child component placeholder text";
+    //[Parameter]
+    //public string Required { get; set; } = "required";
+    //[Parameter]
+    //public string Maxlength { get; set; } = "15";
+    //[Parameter]
+    //public string Size { get; set; } = "25";
+
+    //attribute splatting
     [Parameter]
-    public string Placeholder { get; set; } = "Child component placeholder text";
+    public Dictionary<string, object> InputAttributes { get; set; } = new Dictionary<string, object>()
+    {
+        {"required", "required"},
+        {"placeholder", "Child component placeholder text"},
+        {"maxlength", "15"},
+        {"size", "25"}
+    };
     [Parameter]
-    public string Required { get; set; } = "required";
-    [Parameter]
-    public string Maxlength { get; set; } = "15";
-    [Parameter]
-    public string Size { get; set; } = "25";
+    public string Value { get; set; } = "Child value";
 }
