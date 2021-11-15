@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using AutoMapper;
 using EmployeeManagement.Models;
 using EmployeeManagement.Web.Models;
 using EmployeeManagement.Web.Services;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using PragimTech.Components;
 
 namespace EmployeeManagement.Web.Pages
 {
     public class EditEmployeeBase : ComponentBase
     {
+        [CascadingParameter]
+        public Task<AuthenticationState> authenticationStakeTask { get; set; }
         [Inject]
         public IEmployeeService EmployeeService { get; set; }
         [Inject]
@@ -34,6 +38,13 @@ namespace EmployeeManagement.Web.Pages
         [Inject] public NavigationManager NavigationManager { get; set; }
         protected override async Task OnInitializedAsync()
         {
+            var authenticationStake = await authenticationStakeTask;
+            if (!authenticationStake.User.Identity.IsAuthenticated)
+            {
+                string returnUrl =WebUtility.UrlEncode($"/editemployee/{Id}");
+                NavigationManager.NavigateTo($"/identity/account/login?returnUrl={returnUrl}");
+            }
+
             int.TryParse(Id, out int employeeId);
             if (employeeId!=0)
             {
