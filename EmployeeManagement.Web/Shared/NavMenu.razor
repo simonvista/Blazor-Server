@@ -9,6 +9,7 @@
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <ul class="nav flex-column">
+        @*protect special parts within a page or child components*@
         <AuthorizeView>
             <Authorized>
                 <li class="nav-item px-3">
